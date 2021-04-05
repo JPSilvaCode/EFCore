@@ -14,5 +14,7 @@ namespace EFCDomain.Data
         void Add(Customer customer);
         void Update(Customer customer);
         void Remove(Customer customer);
+
+        Task<int> SaveChanges();
     }
 }

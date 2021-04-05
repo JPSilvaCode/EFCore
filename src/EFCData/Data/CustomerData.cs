@@ -53,6 +53,11 @@ namespace EFCData.Data
         }
         #endregion
 
+        public async Task<int> SaveChanges()
+        {
+           return await Db.SaveChangesAsync();
+        }
+
         public void Dispose()
         {
             Db.Dispose();
