@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCWebAPI", "src\EFCWebAPI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCDomain", "src\EFCDomain\EFCDomain.csproj", "{DA843AB9-0C0F-49B2-9EA5-4834B79A8F23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCData", "src\EFCData\EFCData.csproj", "{D6C4C0DA-6C61-4B64-8D2D-5C5195EC5647}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DA843AB9-0C0F-49B2-9EA5-4834B79A8F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA843AB9-0C0F-49B2-9EA5-4834B79A8F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA843AB9-0C0F-49B2-9EA5-4834B79A8F23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6C4C0DA-6C61-4B64-8D2D-5C5195EC5647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6C4C0DA-6C61-4B64-8D2D-5C5195EC5647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6C4C0DA-6C61-4B64-8D2D-5C5195EC5647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6C4C0DA-6C61-4B64-8D2D-5C5195EC5647}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
