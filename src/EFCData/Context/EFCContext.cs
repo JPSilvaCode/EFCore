@@ -1,4 +1,5 @@
-﻿using EFCDomain.Models;
+﻿using EFCData.Mappings;
+using EFCDomain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFCData.Context
@@ -14,7 +15,9 @@ namespace EFCData.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new CustomerMap());
 
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
