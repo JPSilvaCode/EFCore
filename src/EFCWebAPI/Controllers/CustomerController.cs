@@ -1,5 +1,7 @@
-﻿using EFCDomain.Data;
+﻿using AutoMapper;
+using EFCDomain.Data;
 using EFCDomain.Models;
+using EFCWebAPI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,49 +14,51 @@ namespace EFCWebAPI.Controllers
     {
         private readonly ICustomerData _customerData;
         private readonly IUnitOfWork _uow;
+        private readonly IMapper _mapper;
 
-        public CustomerController(ICustomerData customerData, IUnitOfWork uow)
+        public CustomerController(ICustomerData customerData, IUnitOfWork uow, IMapper mapper)
         {
             _customerData = customerData;
             _uow = uow;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Customer>> Get()
+        public async Task<IEnumerable<CustomerViewModel>> Get()
         {
-            return await _customerData.GetAll();
+            return _mapper.Map<IEnumerable<CustomerViewModel>>(await _customerData.GetAll());
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<Customer> Get(Guid id)
+        public async Task<CustomerViewModel> Get(Guid id)
         {
-            return await _customerData.GetById(id);
+            return _mapper.Map<CustomerViewModel>(await _customerData.GetById(id));
         }
 
         [HttpGet("{email}")]
-        public async Task<Customer> Get(string email)
+        public async Task<CustomerViewModel> Get(string email)
         {
-            return await _customerData.GetByEmail(email);
+            return _mapper.Map<CustomerViewModel>(await _customerData.GetByEmail(email));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Customer customer)
+        public async Task<IActionResult> Post([FromBody] CustomerViewModel customerViewModel)
         {
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
 
-            _customerData.Add(customer);
+            _customerData.Add(_mapper.Map<Customer>(customerViewModel));
             await _uow.Commit();
             return Ok();
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] Customer customer)
+        public async Task<IActionResult> Put([FromBody] CustomerViewModel customerViewModel)
         {
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
 
-            _customerData.Update(customer);
+            _customerData.Update(_mapper.Map<Customer>(customerViewModel));
             await _uow.Commit();
 
             return Ok();

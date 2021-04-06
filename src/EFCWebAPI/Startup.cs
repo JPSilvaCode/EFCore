@@ -30,6 +30,8 @@ namespace EFCWebAPI
         {
             services.AddApiConfiguration(Configuration);
 
+            services.AddAutoMapperConfiguration();
+
             services.AddSwaggerConfiguration();
 
             services.RegisterServices();
