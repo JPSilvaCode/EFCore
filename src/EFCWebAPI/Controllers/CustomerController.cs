@@ -11,10 +11,12 @@ namespace EFCWebAPI.Controllers
     public class CustomerController : MainController
     {
         private readonly ICustomerData _customerData;
+        private readonly IUnitOfWork _uow;
 
-        public CustomerController(ICustomerData customerData)
+        public CustomerController(ICustomerData customerData, IUnitOfWork uow)
         {
             _customerData = customerData;
+            _uow = uow;
         }
 
         [HttpGet]
@@ -42,7 +44,7 @@ namespace EFCWebAPI.Controllers
                 return CustomResponse(ModelState);
 
             _customerData.Add(customer);
-            await _customerData.SaveChanges();
+            await _uow.Commit();
             return Ok();
         }
 
@@ -53,7 +55,7 @@ namespace EFCWebAPI.Controllers
                 return CustomResponse(ModelState);
 
             _customerData.Update(customer);
-            await _customerData.SaveChanges();
+            await _uow.Commit();
 
             return Ok();
         }
@@ -67,7 +69,7 @@ namespace EFCWebAPI.Controllers
                 return BadRequest();
 
             _customerData.Remove(customer);
-            await _customerData.SaveChanges();
+            await _uow.Commit();
 
             return Ok();
         }

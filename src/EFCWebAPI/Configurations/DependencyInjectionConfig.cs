@@ -9,6 +9,7 @@ namespace EFCWebAPI.Configurations
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddScoped<ICustomerData, CustomerData>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }
