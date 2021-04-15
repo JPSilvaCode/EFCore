@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EFCDomain.Models;
 
 namespace EFCData.Data
 {
-    public class Data<T> : IData<T> where T : class
+    public class Data<T> : IData<T> where T : class, IAggregateRoot
     {
         protected readonly EFCContext _context;
 
