@@ -70,7 +70,7 @@ namespace EFCWebAPI.Controllers
             var customer = await _customerData.GetById(id);
 
             if (customer == null)
-                return BadRequest();
+                return NotFound();
 
             _customerData.Remove(customer);
             await _uow.Commit();
